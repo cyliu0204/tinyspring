@@ -41,6 +41,9 @@ public class BeanDefinition {
     }
 
     public PropertyValues getPropertyValues() {
+        if (this.propertyValues == null){
+            propertyValues = new PropertyValues();
+        }
         return propertyValues;
     }
 
