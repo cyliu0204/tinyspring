@@ -1,6 +1,6 @@
-package com.cyliu.tinyioc;
+package com.cyliu.tinyioc.beans;
 
-import com.cyliu.tinyioc.io.ResourceLoader;
+import com.cyliu.tinyioc.beans.io.ResourceLoader;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

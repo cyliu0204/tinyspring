@@ -1,4 +1,4 @@
-package com.cyliu.tinyioc;
+package com.cyliu.tinyioc.beans;
 
 import java.util.ArrayList;
 import java.util.List;

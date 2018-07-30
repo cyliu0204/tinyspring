@@ -1,7 +1,7 @@
 package com.cyliu.io;
 
-import com.cyliu.tinyioc.io.Resource;
-import com.cyliu.tinyioc.io.ResourceLoader;
+import com.cyliu.tinyioc.beans.io.Resource;
+import com.cyliu.tinyioc.beans.io.ResourceLoader;
 
 import java.io.IOException;
 

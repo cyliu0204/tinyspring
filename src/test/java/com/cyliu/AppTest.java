@@ -6,12 +6,14 @@ package com.cyliu;
 public class AppTest 
 
 {
+    private  HelloService helloService;
+
     public  AppTest(){
         System.out.println("hello");
     }
 
     public void sayHi(){
-        System.out.println("say hi");
+        helloService.sayHello();
     }
 
 }

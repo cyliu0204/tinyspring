@@ -1,9 +1,10 @@
-package com.cyliu.tinyioc.xml;
+package com.cyliu.tinyioc.beans.xml;
 
-import com.cyliu.tinyioc.AbstractBeanDefinitonReader;
-import com.cyliu.tinyioc.BeanDefinition;
-import com.cyliu.tinyioc.PropertyValue;
-import com.cyliu.tinyioc.io.ResourceLoader;
+import com.cyliu.tinyioc.beans.AbstractBeanDefinitonReader;
+import com.cyliu.tinyioc.beans.BeanDefinition;
+import com.cyliu.tinyioc.BeanReference;
+import com.cyliu.tinyioc.beans.PropertyValue;
+import com.cyliu.tinyioc.beans.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -32,7 +33,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitonReader {
         DocumentBuilder documentBuilder = factory.newDocumentBuilder();
         Document doc = documentBuilder.parse(inputStream);
         registerDocument(doc);
-
+        inputStream.close();
     }
 
     private void registerDocument(Document doc) {
@@ -72,8 +73,19 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitonReader {
                 Element propertyEle = (Element) node;
                 String name = propertyEle.getAttribute("name");
                 String value = propertyEle.getAttribute("value");
-                PropertyValue propertyValue = new PropertyValue(name,value);
-                beanDefinition.getPropertyValues().addPropertyValue(propertyValue);
+                if(value != null && value.length() > 0) {
+                    beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, value));
+                } else {
+                    String ref = propertyEle.getAttribute("ref");
+                    if (ref == null || ref.length() == 0) {
+                        throw new IllegalArgumentException("Configuration problem: <property> element for property '"
+                                + name + "' must specify a ref or value");
+                    }
+                    BeanReference beanReference = new BeanReference(ref);
+                    beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, beanReference));
+                }
+
+
             }
         }
     }

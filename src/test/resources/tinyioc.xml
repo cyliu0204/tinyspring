@@ -14,5 +14,11 @@
 
 
 
-    <bean name="AppTest" class="com.cyliu.AppTest"></bean>
+    <bean name="appTest" class="com.cyliu.AppTest">
+        <property name="helloService" ref="helloService"/>
+    </bean>
+
+    <bean name="helloService" class="com.cyliu.HelloService">
+        <!--<property name="appTest" ref="appTest"/>-->
+    </bean>
 </beans>

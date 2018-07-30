@@ -1,4 +1,4 @@
-package com.cyliu.tinyioc.io;
+package com.cyliu.tinyioc.beans.io;
 
 import java.io.IOException;
 import java.io.InputStream;

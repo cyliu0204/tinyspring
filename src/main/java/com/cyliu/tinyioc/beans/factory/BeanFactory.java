@@ -1,11 +1,11 @@
-package com.cyliu.tinyioc.factory;
+package com.cyliu.tinyioc.beans.factory;
 
-import com.cyliu.tinyioc.BeanDefinition;
+import com.cyliu.tinyioc.beans.BeanDefinition;
 
 
 public interface BeanFactory {
 
-    Object getBean(String className);
+    Object getBean(String className) throws Exception;
 
     void registerBeanDefinition(String className, BeanDefinition beanDefinition) throws Exception;
     
